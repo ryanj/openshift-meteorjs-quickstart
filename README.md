@@ -44,18 +44,18 @@ In this guide, we'll try the meteor.js leaderboard example:
 
 See [http://meteor.com/examples/](http://meteor.com/examples/) for additional help getting started with meteor.js.
 
-### Bundle up your meteor.js code, and fold it into your OpenShift source
-Bundle up your meteor.js code, and add the result to your OpenShift application source:
+### Bundle and merge your meteor.js code
+Bundle up your meteor.js source:
 
     cd leaderboard
     meteor bundle bundle.tar.gz
-    tar -xvf bundle.tar.gz bundle/ -C ../meteor
-    rm bundle.tar.gz
+
+And add the result to your OpenShift application source:
+
+    tar -xvkf bundle.tar.gz --transform 's|^bundle/||' --directory ../meteor/
     cd ../meteor
 
-You'll need to reset a few quickstart files that were overwritten by the previous `bundle` step:
-
-    git checkout main.js server/server.js README
+The above example assumes that you named your OpenShift application "meteor", as shown in the `rhc app create` step.
 
 Add your meteor application bundle and update your OpenShift gear:
 
