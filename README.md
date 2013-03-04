@@ -29,15 +29,11 @@ If you need any additional setup assistance, these links may come in handy:
 
 ## Create your application
 ### Setup your OpenShift gear
-Spin up a new OpenShift gear with Node.js and some basic starter-code:
+Spin up a new OpenShift gear with Node.js, MongoDB, and some basic starter-code:
 
-    rhc app create meteor nodejs --from-code=https://github.com/ryanj/openshift-meteorjs-quickstart.git
+    rhc app create meteor nodejs mongodb-2.2 --from-code=https://github.com/ryanj/openshift-meteorjs-quickstart.git
 
 The above command will output a local copy of your OpenShift application source in a folder matching your application name (meteor).  Be sure to run this command from within a folder where you would like to store your application source.
-
-Add a MongoDB data-store to your OpenShift gear:
-
-    rhc cartridge add mongodb-2.2 --app meteor
 
 ### Create a Meteor.js example project
 To see a list of all available meteor.js example projects, type `meteor create --list`.
