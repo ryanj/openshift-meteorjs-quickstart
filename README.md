@@ -1,12 +1,12 @@
 #Meteor.js on OpenShift
 Deploy meteor.js application bundles on OpenShift
 
-If this is your first time using OpenShift Online or meteor.js, skip down to the "[Basic Setup Notes](https://github.com/ryanj/openshift-meteorjs-quickstart#basic-setup-notes)" below.
+If this is your first time using OpenShift Online or meteor.js, skip down to the "[Basic Setup Notes](https://github.com/openshift-quickstart/openshift-meteorjs-quickstart#basic-setup-notes)" below.
 
 ### Setup your OpenShift gear
 Spin up a new OpenShift gear with Node.js, MongoDB, and some basic starter-code:
 
-    rhc app create meteor nodejs mongodb-2.2 --from-code=https://github.com/ryanj/openshift-meteorjs-quickstart.git
+    rhc app create meteor nodejs mongodb-2.2 --from-code=https://github.com/openshift-quickstart/openshift-meteorjs-quickstart.git
 
 The above command will output a local copy of your OpenShift application source in a folder matching your application name (meteor).  Be sure to run this command from within a folder where you would like to store your application source.
 
@@ -22,10 +22,10 @@ See [http://meteor.com/examples/](http://meteor.com/examples/) for additional he
 ### Bundle and merge your meteor.js code
 Bundle up your meteor.js source:
 
-    cd leaderboard
+    cd leaderboard 
     meteor bundle bundle.tar.gz
 
-Add the resulting code bundle to your OpenShift application source:
+Add the resulting code bundle to your OpenShift application source folder:
 
     tar -xvkf bundle.tar.gz --transform 's|^bundle/||' --directory ../meteor/
 
@@ -50,6 +50,10 @@ That's it! Check out your new Meteor.js application at:
 ## Basic Setup Notes
 You'll need an OpenShift Online account, and the `rhc` and `meteor` command-line tools in order to follow this guide.
 
+### Installing meteor.js
+
+    curl https://install.meteor.com | sh
+
 ### OpenShift Online Setup
 In this quickstart guide, we'll be using OpenShift Online to host our application.
 
@@ -63,11 +67,7 @@ You'll need to run `rhc setup` to link your OpenShift Online account with your l
 
     rhc setup
 
-If you need any additional setup assistance, these links may come in handy:
+If you need any additional setup help, these links may come in handy:
 
  * https://openshift.redhat.com/community/get-started#cli
  * https://openshift.redhat.com/community/developers/rhc-client-tools-install
-
-### Installing meteor.js
-
-    curl https://install.meteor.com | sh
