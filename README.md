@@ -34,7 +34,6 @@ The above example assumes that you named your OpenShift application "meteor", as
 Add these new files to your OpenShift application's Git repo:
 
     cd ../meteor
-    git add .
     git commit -am "Adding a meteor.js application bundle"
 
 ### Deploy to OpenShift
