@@ -1,7 +1,7 @@
 #Meteor.js on OpenShift
-Deploy meteor.js application bundles on OpenShift!
+Deploy meteor.js application bundles on OpenShift
 
-If this is your first time using OpenShift Online or meteor.js, skip down to the "Basic Setup Notes" below.
+If this is your first time using OpenShift Online or meteor.js, skip down to the "[Basic Setup Notes](https://github.com/ryanj/openshift-meteorjs-quickstart#basic-setup-notes)" below.
 
 ### Setup your OpenShift gear
 Spin up a new OpenShift gear with Node.js, MongoDB, and some basic starter-code:
