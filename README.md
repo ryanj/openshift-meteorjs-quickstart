@@ -49,10 +49,8 @@ Bundle up your meteor.js code, and add the result to your OpenShift application 
 
     cd leaderboard
     meteor bundle bundle.tar.gz
-    tar -xvzf bundle.tar.gz
+    tar -xvf bundle.tar.gz bundle/ -C ../meteor
     rm bundle.tar.gz
-    mv bundle/* ../meteor/
-    rmdir bundle
     cd ../meteor
 
 You'll need to reset a few quickstart files that were overwritten by the previous `bundle` step:
