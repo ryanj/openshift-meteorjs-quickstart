@@ -1,64 +1,78 @@
-Running a custom/latest Node[.js] version on RedHat's OpenShift PaaS
-====================================================================
-This git repository is a sample Node application along with the
-"orchestration" bits to help you run the latest or a custom version
-of Node on RedHat's OpenShift PaaS.
+#Meteor.js on OpenShift
+Deploy meteor.js application bundles on OpenShift
 
+## Basic Setup
+You'll need an OpenShift Online account, and the `rhc` and `meteor` command-line tools in order to proceed.  
+If you already have these pre-requisites, skip ahead to the section on "Creating your application".
 
-Selecting a Node version to install/use
----------------------------------------
+### OpenShift Online
+In this quickstart guide, we'll be using OpenShift Online to host our application.
 
-To select the version of Node.js that you want to run, 
-update the 'engines' section of your app's package.json file.
+Sign up for an account at http://openshift.redhat.com/app/account/new
 
-    Example: To install Node.js version 0.8.21, update your package.json file:
-       $ sed -e 's/"node": ".*"/"node": ">= 0.8.21"/' -i package.json
+If you don't already have the `rhc` (Red Hat Cloud) command-line tools, install them:
 
+    sudo gem install rhc
 
-The action_hooks in this app will automatically download, build,
-and install a copy of Node.js that matches the requirements specified in
-your app's package.json file.
+You'll need to run `rhc setup` to link your OpenShift Online account with your local development environment, and to select an application namespace:
 
-     See: .openshift/action_hooks/ for more informaiton.
+    rhc setup
 
-Okay, now onto how can you get a custom Node.js version running
-on OpenShift.
+If you need any additional setup assistance, these links may come in handy:
 
+ * https://openshift.redhat.com/community/get-started#cli
+ * https://openshift.redhat.com/community/developers/rhc-client-tools-install
 
-Steps to get a custom Node.js version running on OpenShift
-----------------------------------------------------------
+### Install meteor.js
 
-Create an account at http://openshift.redhat.com/
+    curl https://install.meteor.com | sh
 
-Create a namespace, if you haven't already do so
+## Create your application
+### Setup your OpenShift gear
+Spin up a new OpenShift gear with Node.js and some basic starter-code:
 
-    rhc domain create <yournamespace>
+    rhc app create meteor nodejs --from-code=https://github.com/ryanj/openshift-meteorjs-quickstart.git
 
-Create a nodejs-0.6 application (you can name it anything via -a)
+The above command will output a local copy of your OpenShift application source in a folder matching your application name (meteor).  Be sure to run this command from within a folder where you would like to store your application source.
 
-    rhc app create -a palinode  -t nodejs-0.6
+Add a MongoDB data-store to your OpenShift gear:
 
-Add this `github nodejs-custom-version-openshift` repository
+    rhc cartridge add mongodb-2.2 --app meteor
 
-    cd palinode
-    git remote add upstream -m master git://github.com/openshift/nodejs-custom-version-openshift.git
-    git pull -s recursive -X theirs upstream master
+### Create a Meteor.js example project
+To see a list of all available meteor.js example projects, type `meteor create --list`.
 
-If you would like to use a more recent version of Node.js (example v0.9.1), just update the 'engines' section of your app's package.json file:
+In this guide, we'll try the meteor.js leaderboard example:
 
-    sed -e 's/"node": ".*"/"node": ">= 0.8.21"/' -i package.json
+    meteor create --example leaderboard
 
-Commit your changes locally:
+See [http://meteor.com/examples/](http://meteor.com/examples/) for additional help getting started with meteor.js.
 
-    git add package.json
-    git commit -m 'updating package.json to select Node.js version 0.8.21'
+### Bundle up your meteor.js code, and fold it into your OpenShift source
+Bundle up your meteor.js code, and add the result to your OpenShift application source:
 
-Then push your updates to OpenShift
+    cd leaderboard
+    meteor bundle bundle.tar.gz
+    tar -xvzf bundle.tar.gz
+    rm bundle.tar.gz
+    mv bundle/* ../meteor/
+    rmdir bundle
+    cd ../meteor
+
+You'll need to reset a few quickstart files that were overwritten by the previous `bundle` step:
+
+    git checkout main.js server/server.js README
+
+Add your meteor application bundle and update your OpenShift gear:
+
+    git add .
+    git commit -am "Adding a meteor.js application bundle"
+
+### Deploy to OpenShift
+Then, push your changes to OpenShift to deploy your new meteor.js application
 
     git push
 
-That's it, you can now checkout your application at:
+That's it! Check out your new Meteor.js application at:
 
-    http://palinode-$yournamespace.rhcloud.com
-    ( See env @ http://palinode-$yournamespace.rhcloud.com/env )
-
+    http://meteor-$yournamespace.rhcloud.com
