@@ -3,7 +3,7 @@ Deploy meteor.js application bundles on OpenShift
 
 <a href='https://openshift.redhat.com/community/blogs/cloudy-with-a-chance-of-meteorjs'><img src='https://openshift.redhat.com/community/sites/default/files/meteorshift_1.png'/></a>
 
-If this is your first time using OpenShift Online or meteor.js, skip down to the "[Basic Setup Notes](https://github.com/openshift-quickstart/openshift-meteorjs-quickstart#basic-setup-notes)" below.
+If this is your first time using [OpenShift Online](http://openshift.com/) or [Meteor](http://meteor.com/), skip down to the "[Basic Setup Notes](https://github.com/openshift-quickstart/openshift-meteorjs-quickstart#basic-setup-notes)" below.
 
 ## Configure your OpenShift gear
 Spin up a new OpenShift gear with [Node.js](http://nodejs.org), [MongoDB](http://www.mongodb.org/), and [a shim to help meteor.js connect to the correct ports](https://github.com/openshift-quickstart/openshift-meteorjs-quickstart).  This example uses the application name: "**meteor**"
