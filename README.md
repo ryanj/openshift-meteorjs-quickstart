@@ -25,15 +25,22 @@ Bundle up your meteor.js source:
     cd leaderboard # if you chose the leaderboard example
     meteor bundle bundle.tar.gz # to prep for deployment
 
-Add the resulting code bundle to your OpenShift application source folder (`../meteor`):
+Next, you'll need to extract the resulting code into your OpenShift application folder (minus the "bundle/" folder wrapper that Meteor will automatically include). Use the -k flag when extracting to prevent the existing DB connection code from being overwritten during this merge process.
+
+If you are developing on Linux, or using GNU tar, this command should work:
 
     tar -xvkf bundle.tar.gz --transform 's|^bundle/||' --directory ../meteor/
 
-The above example assumes that you named your OpenShift application "meteor", as shown in the `rhc app create` step.
+For Mac or BSD-based operating systems:
+
+    tar -xvkf bundle.tar.gz -s '/^bundle//' -C ../meteor/
+
+The above example assumes that you named your OpenShift application "meteor", as shown in the `rhc app create` step.  And, that your OpenShift application code is available at this relative path: `../meteor`
 
 Add these new files to your OpenShift application's Git repo:
 
     cd ../meteor
+    git add .
     git commit -am "Adding a meteor.js application bundle"
 
 ## Deploy to OpenShift
