@@ -29,7 +29,7 @@ Next, you'll need to extract the resulting code into your OpenShift application 
 
 If you are developing on Linux, or using GNU tar, this command should work:
 
-    tar -xvkf bundle.tar.gz --transform 's|^bundle/||' --directory ../meteor/
+    tar -xvkf bundle.tar.gz --transform 's|^bundle/||' -C ../meteor/
 
 For Mac or BSD-based operating systems:
 
