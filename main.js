@@ -13,7 +13,7 @@ console.log("ROOT_URL IS: " + process.env.ROOT_URL);
 console.log("PORT: " + process.env.PORT);
 console.log("IP: " + process.env.IP);
 
-fs.stat(__dirname+'app.json', function(err, stat) {
+fs.stat('app.json', function(err, stat) {
 // if the meteor application bundle is missing, 
 // return additional installation instructions:
 if(!err)
