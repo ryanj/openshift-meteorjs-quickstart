@@ -12,6 +12,7 @@ console.log("MONGO_URL IS: " + process.env.MONGO_URL);
 console.log("ROOT_URL IS: " + process.env.ROOT_URL);
 console.log("PORT: " + process.env.PORT);
 console.log("IP: " + process.env.IP);
+console.log("GITHUB_CLIENT: " + process.env.GITHUB_CLIENT);
 
 fs.stat('app.json', function(err, stat) {
 // if the meteor application bundle is missing, 
@@ -19,7 +20,7 @@ fs.stat('app.json', function(err, stat) {
 if(!err)
 {
   // Start meteor server
-  require(require('path').join(__dirname, 'server', 'server.js'));
+  require('./server/server.js');
 }else{
   var http = require('http');
   // Start a server that returns a short list of instructions
