@@ -50,7 +50,8 @@ var init_keepalive = function () {
 // delivering browser polyfills only as needed.
 //
 // To avoid detecting the browser in multiple places ad-hoc, we create a
-// Meteor "browser" object. It uses but does not expose the npm
+// Meteor "browser" object. It uses but does not expose the 
+
 // useragent module (we could choose a different mechanism to identify
 // the browser in the future if we wanted to).  The browser object
 // contains
@@ -279,7 +280,11 @@ var run = function () {
       // error message on parse error. it's what require() uses to
       // generate its errors.
       var func = require('vm').runInThisContext(wrapped, filename, true);
-      func(Npm);
+      // Setting `this` to `global` allows you to do a top-level
+      // "this.foo = " to define global variables when using "use strict"
+      // (http://es5.github.io/#x15.3.4.4); this is the only way to do
+      // it in CoffeeScript.
+      func.call(global, Npm);
     });
 
 
