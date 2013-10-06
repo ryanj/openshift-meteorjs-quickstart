@@ -50,8 +50,7 @@ var init_keepalive = function () {
 // delivering browser polyfills only as needed.
 //
 // To avoid detecting the browser in multiple places ad-hoc, we create a
-// Meteor "browser" object. It uses but does not expose the 
-
+// Meteor "browser" object. It uses but does not expose the npm
 // useragent module (we could choose a different mechanism to identify
 // the browser in the future if we wanted to).  The browser object
 // contains
