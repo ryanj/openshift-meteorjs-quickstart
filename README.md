@@ -8,7 +8,7 @@ If this is your first time using [OpenShift Online](http://openshift.com/) or [M
 ## Configure your OpenShift gear
 Spin up a new OpenShift gear with [Node.js](http://nodejs.org), [MongoDB](http://www.mongodb.org/), and [a shim to help meteor.js connect to the correct ports](https://github.com/openshift-quickstart/openshift-meteorjs-quickstart).  This example uses the application name: "**meteor**"
 
-    rhc app create meteor nodejs mongodb-2.2 --from-code=https://github.com/openshift-quickstart/openshift-meteorjs-quickstart.git
+    rhc app create meteor nodejs-0.10 mongodb-2.2 --from-code=https://github.com/openshift-quickstart/openshift-meteorjs-quickstart.git
 
 The above command will output a local copy of your OpenShift application source in a folder matching your application name.  Be sure to run this command from within a folder where you would like to keep your project source.
 
