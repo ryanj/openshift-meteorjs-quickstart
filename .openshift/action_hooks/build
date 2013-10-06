@@ -8,7 +8,7 @@ sed -i 's/   app.listen(port, function() {/   app.listen(port, process.env.IP, f
 #Bootstrap our app configuration using a custom main.js
 cp -f ../.openshift/template/main.js ../main.js
 
-#Making sure that fibers is available...
+#fibers should be available 
 npm install fibers
 
 popd
