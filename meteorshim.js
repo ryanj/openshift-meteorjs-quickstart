@@ -3,16 +3,15 @@ var fs = require('fs')
 
 // Setup env
 process.env.ROOT_URL = process.env.OPENSHIFT_APP_DNS || "localhost";
-process.env.MONGO_URL = (process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME) || "mongodb://localhost:27017/";
+process.env.MONGO_URL = (process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME) || "mongodb://localhost:27017/meteor";
 process.env.PORT = process.env.OPENSHIFT_NODEJS_PORT || 8000;
-process.env.BIND_IP = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+process.env.BIND_IP = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
 // Show connection details on startup
 console.log("MONGO_URL IS: " + process.env.MONGO_URL);
 console.log("ROOT_URL IS: " + process.env.ROOT_URL);
 console.log("PORT: " + process.env.PORT);
 console.log("BIND_IP: " + process.env.BIND_IP);
-console.log("GITHUB_CLIENT: " + process.env.GITHUB_CLIENT);
 
 fs.stat('main.js', function(err, stat) {
 // if the meteor application bundle is missing, 
@@ -28,7 +27,7 @@ if(!err)
   http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
   res.end(dev_instructions);
-}).listen(process.env.PORT, process.env.IP);
-  console.log('Server running at http://' + process.env.IP + ":" + process.env.PORT); 
+}).listen(process.env.PORT, process.env.BIND_IP);
+  console.log('Server running at http://' + process.env.BIND_IP + ":" + process.env.PORT); 
 }
 });
