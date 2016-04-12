@@ -1,4 +1,12 @@
 #Meteor.js on OpenShift
+
+## !!WARNING!!
+***This quickstart DOES NOT work with recent releases of MeteorJS.***
+
+***I'd recommend trying [sachinbhutani/meteor-openshift](https://github.com/sachinbhutani/meteor-openshift) instead.***
+
+####Meteor.js on OpenShift
+
 Deploy [meteor.js](http://meteor.com/) application bundles on [OpenShift](http://openshift.com/)
 
 <a href='https://openshift.redhat.com/community/blogs/cloudy-with-a-chance-of-meteorjs'><img src='https://openshift.redhat.com/community/sites/default/files/meteorshift_1.png'/></a>
